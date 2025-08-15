@@ -85,8 +85,11 @@ for i=1:N_period-1
 
 end
 
+#set the desired Pc 
+Pc_des = 1e-6
+
 #build the conjunction struct 
-conjunction = construct_conjunction(reference_trajectory, scaling_units)
+conjunction = construct_conjunction(reference_trajectory, scaling_units, Pc_des)
 
 #x and u optimization variables
 xtraj = Variable(nx,N_period)
