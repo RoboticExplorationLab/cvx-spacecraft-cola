@@ -1,11 +1,8 @@
 include("transformations.jl")
 include("problem_objects.jl")
 
-#define the hard body radius (m)
+#define the hard body radius (m). same for both examples
 hbr = 10
-
-#define the desired probability of collision 
-Pc_des = 1e-6
 
 #projection onto the b-plane matrix
 E = [1.0 0.0 0.0; 0.0 0.0 1.0]
@@ -109,7 +106,7 @@ object_2_cov_rtn = [
     CNDOT_R2  CNDOT_T2  CNDOT_N2  CNDOT_RDOT2  CNDOT_TDOT2  CNDOT_NDOT2
 ]
 
-function construct_conjunction(reference_trajectory, scaling_units)
+function construct_conjunction(reference_trajectory, scaling_units, Pc_des)
 
     sat1_tca = reference_trajectory[:,end]
 
@@ -138,7 +135,7 @@ function construct_conjunction(reference_trajectory, scaling_units)
     
     #get a 2x2 covariance matrix in the encounter plane 
     #assumption that there is no uncertainty in the relative direction. 3D problem becomes 2D 
-    
+
     #equivalent notation in the paper
     cov_encounter = E*cov_combined_encounter*E'
 
