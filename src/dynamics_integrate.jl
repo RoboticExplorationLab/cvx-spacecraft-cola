@@ -99,7 +99,7 @@ function justdynamics_DFJL!(du, u, p, t)
 end
 
 #gets the state and for the entire solution
-function get_state(solution)
+function get_state(solution, N)
     
     N = size(solution.u)[1]
 
@@ -113,23 +113,3 @@ function get_state(solution)
     #solution.t is the time
     return all_states
 end
-
-
-
-
-
-
-# function get_jacobians(N_period, nx, nu)
-
-#     all_A = zeros(nx, nx, N_period-1)
-#     all_B = zeros(nx, nu, N_period-1)
-
-#     for i=1:N_period-1
-
-#         all_A[:,:,i] =  ForwardDiff.jacobian(dx->just_dynamics_integrate(dx, horizon[i], horizon[i+1]).u[end][1:6], [reference_trajectory[:,i]; zeros(3)])[1:6, 1:6]
-#         all_B[:,:,i] =  ForwardDiff.jacobian(dx->just_dynamics_integrate(dx, horizon[i], horizon[i+1]).u[end][1:6], [reference_trajectory[:,i]; zeros(3)])[1:6, 7:9]
-
-#     end
-    
-
-# end

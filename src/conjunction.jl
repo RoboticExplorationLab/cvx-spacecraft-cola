@@ -109,9 +109,9 @@ object_2_cov_rtn = [
     CNDOT_R2  CNDOT_T2  CNDOT_N2  CNDOT_RDOT2  CNDOT_TDOT2  CNDOT_NDOT2
 ]
 
-function construct_conjunction(problem_vars, scaling_units)
+function construct_conjunction(reference_trajectory, scaling_units)
 
-    sat1_tca = problem_vars.reference_trajectory[:,end]
+    sat1_tca = reference_trajectory[:,end]
 
     sat2_tca = sat1_tca + [delta[1:3]./scaling_units.distance_scale; delta[4:6]./scaling_units.velocity_scale]
 
@@ -138,12 +138,7 @@ function construct_conjunction(problem_vars, scaling_units)
     
     #get a 2x2 covariance matrix in the encounter plane 
     #assumption that there is no uncertainty in the relative direction. 3D problem becomes 2D 
-
-    #cov_encounter = [
-    #                cov_combined_encounter[1,1] cov_combined_encounter[1,3];
-    #                cov_combined_encounter[3,1] cov_combined_encounter[3,3]
-    #                ]
-
+    
     #equivalent notation in the paper
     cov_encounter = E*cov_combined_encounter*E'
 
@@ -152,13 +147,13 @@ function construct_conjunction(problem_vars, scaling_units)
     p = log(hbr^4/ (Pc_des^2*4*det(cov_encounter)))
 
     #the units are meters squared in cov_encoutner, scale to custom units
-    cov_encounter_scaled = cov_encounter./(distance_scale)^2
+    cov_encounter_scaled = cov_encounter./(scaling_units.distance_scale)^2
 
     #convert to encounter plane and project onto b-plane
     R_tilde = E*eci2encounter
 
     #create the conjunction object and return it 
-    conjunction = ConjunctionEvent(sat1_tca, sat2_tca, cov_encounter, p, R_tilde)
+    conjunction = ConjunctionEvent(sat1_tca, sat2_tca, cov_encounter_scaled, p, R_tilde)
 
     return conjunction 
 
@@ -182,7 +177,7 @@ function plot_pc_ellipse(c_ellipse, C_ca)
     A =  sqrt(c_ellipse)*Diagonal(sqrt.(λ))
     ellipse = V*A*circle #rotation then scale 
 
-    x_ellipse = ellipse
+    #x_ellipse = ellipse
 
     return ellipse
 
