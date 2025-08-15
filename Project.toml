@@ -1,0 +1,11 @@
+[deps]
+Convex = "f65535da-76fb-5f13-bab9-19810c17039a"
+DelimitedFiles = "8bb1440f-4735-579b-a4ab-409b98df4dab"
+DifferentialEquations = "0c46a032-eb83-5123-abaf-570d42b7fbaa"
+ForwardDiff = "f6369f11-7733-5829-9624-2563aa707210"
+LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
+MathOptInterface = "b8f27783-ece8-5eb3-8dc8-9495eed66fee"
+Mosek = "6405355b-0ac2-5fba-af84-adbd65488c0e"
+MosekTools = "1ec41992-ff65-5c91-ac43-2df89e9693a4"
+Plots = "91a5bcdd-55d7-5caf-9e0b-520d859cae80"
+SatelliteDynamics = "0e7c1a32-1b9f-5532-88a4-e668712d6a4c"
