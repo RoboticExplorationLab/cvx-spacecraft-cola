@@ -3,6 +3,7 @@
 ## Table of Contents
 - [About](#about)
 - [Organization](#organization)
+- [Dependencies](#dependecies)
 
 ## About
 Conjunction analysis and maneuver planning for spacecraft collision avoidance remains a manual and time-consuming process, typically involving repeated forward simulations of hand-designed maneuvers. With the growing density of satellites in low-Earth orbit (LEO), autonomy is becoming essential for efficiently evaluating and mitigating collisions. 
@@ -14,3 +15,6 @@ This repository contains its own Julia 1.11.6 environment specified by the Proje
 The directories in the project are the following: 
 - src: algorithm source code
 - examples: contains case studies from the paper
+
+## Dependencies
+The solver used for this work is Mosek. A free academic license can be obtained here: https://www.mosek.com/products/academic-licenses/
