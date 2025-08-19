@@ -279,5 +279,14 @@ cost_sol
 #get the pc ellipse in scaled units 
 ellipse_pc_scaled = plot_pc_ellipse(conjunction.p, conjunction.cov_encounter)
 
+#in km
+ellipse_pc_SI = ellipse_pc_scaled*scaling_units.distance_scale/1000
 
-#get the plotting code in
+#relative position in the b-plane plot
+relative_position_encounter = conjunction.R_tilde*(conjunction.sat1_tca[1:3] + x_sol[1:3,end] - conjunction.sat2_tca[1:3])
+
+#get in km 
+relative_position_SI = relative_position_encounter*scaling_units.distance_scale/1000
+
+plot(ellipse_pc_SI[1,:], ellipse_pc_SI[2,:], xlabel ="Bx (km)", ylabel="Bz (km)", title="Deviation in Encounter Plane", label=false)
+scatter!([relative_position_SI[1]], [relative_position_SI[2]], label="nlp solve")
